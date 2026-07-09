@@ -1,0 +1,213 @@
+/* =============================================
+   AURA – Sustainability View Styles
+   ============================================= */
+
+.sustain-grid {
+    display: grid;
+    grid-template-columns: 250px 1fr 1fr;
+    gap: 16px;
+}
+
+.sustain-score {
+    grid-row: 1 / 3;
+}
+
+.sustain-carbon {
+    grid-column: 1 / -1;
+}
+
+.sustain-ai {
+    grid-column: 1 / -1;
+}
+
+.score-circle-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: 20px 0 16px;
+}
+
+.score-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.score-value {
+    font-family: var(--font-heading);
+    font-size: 42px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--success), var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.score-text {
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.score-description {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* Energy Stats */
+.energy-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.energy-stat {
+    text-align: center;
+    padding: 10px;
+    background: rgba(148, 163, 184, 0.04);
+    border-radius: var(--radius-sm);
+}
+
+.energy-stat-value {
+    font-size: 18px;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    color: var(--accent-gold);
+}
+
+.energy-stat-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+/* Waste Categories */
+.waste-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.waste-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.waste-icon {
+    font-size: 18px;
+    width: 28px;
+    text-align: center;
+}
+
+.waste-info {
+    flex: 1;
+}
+
+.waste-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.waste-bar {
+    height: 6px;
+    background: rgba(148, 163, 184, 0.08);
+    border-radius: 3px;
+    margin-top: 4px;
+    overflow: hidden;
+}
+
+.waste-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s ease;
+}
+
+.waste-pct {
+    font-size: 12px;
+    font-weight: 700;
+    width: 40px;
+    text-align: right;
+}
+
+/* Water Stats */
+.water-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.water-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.water-icon {
+    font-size: 22px;
+}
+
+.water-info {
+    flex: 1;
+}
+
+.water-label {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.water-value {
+    font-size: 18px;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    color: var(--info);
+}
+
+/* AI Recommendations */
+.ai-recommendations {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.ai-rec {
+    padding: 14px;
+    background: var(--accent-purple-dim);
+    border: 1px solid rgba(168, 85, 247, 0.15);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-base);
+}
+
+.ai-rec:hover {
+    border-color: rgba(168, 85, 247, 0.3);
+    transform: translateY(-2px);
+}
+
+.ai-rec-icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.ai-rec-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.ai-rec-desc {
+    font-size: 11px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.ai-rec-impact {
+    margin-top: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--success);
+}

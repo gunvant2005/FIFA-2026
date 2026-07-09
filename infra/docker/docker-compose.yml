@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    build: ../../backend/api-gateway
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+
+  auth-service:
+    build: ../../backend/auth-service
+    ports:
+      - "8001:8001"
+    environment:
+      - PORT=8001

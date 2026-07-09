@@ -1,0 +1,248 @@
+/* =============================================
+   AURA – Transport View Styles
+   ============================================= */
+
+.transport-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.transport-prediction {
+    grid-column: 1 / -1;
+}
+
+.traffic-routes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.traffic-route {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: rgba(148, 163, 184, 0.04);
+    border-radius: var(--radius-sm);
+}
+
+.traffic-indicator {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.traffic-details {
+    flex: 1;
+}
+
+.traffic-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.traffic-status {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.traffic-time {
+    font-size: 14px;
+    font-weight: 700;
+    font-family: var(--font-heading);
+}
+
+/* Parking */
+.parking-lots {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.parking-lot {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.parking-name {
+    width: 70px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.parking-bar {
+    flex: 1;
+    height: 24px;
+    background: rgba(148, 163, 184, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.parking-fill {
+    height: 100%;
+    border-radius: 12px;
+    transition: width 1.5s ease;
+    position: relative;
+}
+
+.parking-fill::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+    animation: shimmer 2.5s infinite;
+}
+
+.parking-pct {
+    width: 50px;
+    text-align: right;
+    font-size: 13px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Transit Schedule */
+.transit-schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.transit-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: rgba(148, 163, 184, 0.04);
+    border-radius: var(--radius-sm);
+}
+
+.transit-mode {
+    font-size: 20px;
+    width: 32px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.transit-info {
+    flex: 1;
+}
+
+.transit-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.transit-next {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.transit-countdown {
+    font-size: 14px;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    color: var(--success);
+}
+
+/* Carbon Modes */
+.carbon-modes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.carbon-mode {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+}
+
+.carbon-mode-icon {
+    font-size: 20px;
+    width: 32px;
+    text-align: center;
+}
+
+.carbon-mode-info {
+    flex: 1;
+}
+
+.carbon-mode-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.carbon-mode-bar {
+    height: 6px;
+    background: rgba(148, 163, 184, 0.08);
+    border-radius: 3px;
+    margin-top: 4px;
+    overflow: hidden;
+}
+
+.carbon-mode-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s ease;
+}
+
+.carbon-mode-value {
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* Departure Summary */
+.departure-summary {
+    padding: 12px 0 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Rideshare */
+.rideshare-status {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rideshare-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    background: rgba(148, 163, 184, 0.04);
+    border-radius: var(--radius-sm);
+}
+
+.rideshare-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.rideshare-count {
+    font-size: 15px;
+    font-weight: 700;
+    font-family: var(--font-heading);
+}
+
+.rideshare-wait {
+    font-size: 11px;
+    color: var(--text-muted);
+}

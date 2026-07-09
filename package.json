@@ -1,0 +1,30 @@
+{
+  "name": "smart-stadium-genai",
+  "version": "1.0.0",
+  "description": "FIFA World Cup 2026 Smart Stadium Platform (AURA)",
+  "main": "frontend/web-portal/index.html",
+  "scripts": {
+    "start": "npx serve frontend/web-portal",
+    "dev": "npx serve frontend/web-portal",
+    "backend": "node start_backend.js",
+    "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "keywords": [
+    "fifa",
+    "stadium",
+    "genai",
+    "real-time",
+    "dashboard"
+  ],
+  "author": "Antigravity",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "serve": "^14.2.3"
+  }
+}

@@ -1,0 +1,39 @@
+# AURA Restructure Tasks
+
+- [x] Foundation
+  - [x] config.js — all data constants
+  - [x] state.js — centralized state store
+  - [x] eventBus.js — pub/sub system
+  - [x] utils.js — helpers + polyfills
+  - [x] router.js — view navigation + lazy init
+- [x] Core Modules
+  - [x] particles.js
+  - [x] clock.js
+  - [x] notifications.js
+- [x] Chart Classes
+  - [x] ChartBase.js
+  - [x] AreaChart.js
+  - [x] BarChart.js
+  - [x] GaugeChart.js
+- [x] View Modules
+  - [x] DashboardView.js
+  - [x] ChatView.js
+  - [x] NavigatorView.js
+  - [x] OperationsView.js
+  - [x] TransportView.js
+  - [x] SustainabilityView.js
+- [x] CSS Split
+  - [x] variables.css
+  - [x] base.css
+  - [x] layout.css
+  - [x] components.css
+  - [x] View-specific CSS files (6)
+- [x] Entry Points
+  - [x] index.html (updated)
+  - [x] js/app.js (new main entry)
+- [x] Repo Files
+  - [x] package.json
+  - [x] README.md
+  - [x] .gitignore
+- [x] Placeholders for full production repo structure (auth, user, navigation, analytics services, AI models/pipelines, infra/docker/k8s/terraform configs)
+- [x] Restructured code verified

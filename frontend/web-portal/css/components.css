@@ -1,0 +1,119 @@
+/* =============================================
+   AURA – Shared Components
+   Glass cards, KPIs, buttons, badges, toasts, typing
+   ============================================= */
+
+/* ── Glass Card ── */
+.glass-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    box-shadow: var(--shadow-card);
+    transition: all var(--transition-base);
+}
+.glass-card:hover {
+    background: var(--bg-card-hover);
+    border-color: rgba(0, 212, 255, 0.15);
+    box-shadow: var(--shadow-card), var(--shadow-glow-cyan);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+.card-header h3 { font-size: 15px; font-weight: 600; color: var(--text-primary); }
+
+.card-badge {
+    font-size: 10px; font-weight: 700; padding: 3px 10px; border-radius: 10px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    background: var(--accent-cyan-dim); color: var(--accent-cyan);
+}
+.card-badge.live { background: var(--danger-dim); color: var(--danger); animation: badgePulse 1.5s ease-in-out infinite; }
+.card-badge.ai { background: var(--accent-purple-dim); color: var(--accent-purple); }
+.card-badge.warning { background: var(--warning-dim); color: var(--warning); }
+
+/* ── KPI Row ── */
+.kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+
+.kpi-card {
+    background: var(--bg-card); backdrop-filter: blur(12px); border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg); padding: 20px; display: flex; align-items: flex-start;
+    gap: 16px; transition: all var(--transition-base); position: relative; overflow: hidden;
+}
+.kpi-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+    opacity: 0; transition: opacity var(--transition-base);
+}
+.kpi-card:hover { border-color: var(--border-glow); box-shadow: var(--shadow-glow-cyan); transform: translateY(-2px); }
+.kpi-card:hover::before { opacity: 1; }
+
+.kpi-icon {
+    width: 44px; height: 44px; border-radius: var(--radius-md);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.kpi-icon svg { width: 22px; height: 22px; }
+
+.fans-icon { background: var(--accent-cyan-dim); color: var(--accent-cyan); }
+.density-icon { background: var(--warning-dim); color: var(--warning); }
+.incidents-icon { background: var(--danger-dim); color: var(--danger); }
+.transport-icon { background: var(--success-dim); color: var(--success); }
+
+.kpi-content { display: flex; flex-direction: column; }
+.kpi-value { font-family: var(--font-heading); font-size: 26px; font-weight: 700; color: var(--text-primary); line-height: 1.1; }
+.kpi-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+.kpi-trend { font-size: 11px; font-weight: 600; margin-top: 6px; }
+.kpi-trend.up { color: var(--success); }
+.kpi-trend.down { color: var(--success); }
+.kpi-trend.warning { color: var(--warning); }
+
+/* ── Typing Indicator ── */
+.typing-indicator { display: flex; gap: 4px; padding: 8px 0; }
+.typing-indicator span {
+    width: 8px; height: 8px; background: var(--accent-cyan);
+    border-radius: 50%; animation: typingBounce 1.4s ease-in-out infinite;
+}
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+/* ── Buttons ── */
+.btn-primary, .btn-secondary {
+    padding: 6px 14px; border-radius: var(--radius-sm); font-size: 11px; font-weight: 600;
+    transition: all var(--transition-fast);
+}
+.btn-primary { background: linear-gradient(135deg, var(--accent-cyan), #0099cc); color: white; }
+.btn-primary:hover { box-shadow: 0 0 16px rgba(0, 212, 255, 0.3); }
+.btn-secondary { background: rgba(148, 163, 184, 0.1); color: var(--text-secondary); border: 1px solid var(--border-subtle); }
+.btn-secondary:hover { border-color: var(--accent-cyan); color: var(--accent-cyan); }
+
+/* ── Status Dots ── */
+.status-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+.status-dot.active { background: var(--success); }
+.status-dot.standby { background: var(--warning); }
+.status-dot.deployed { background: var(--accent-cyan); }
+
+/* ── Toast Notifications ── */
+.toast-container {
+    position: fixed; top: 80px; right: 24px; z-index: 1000;
+    display: flex; flex-direction: column; gap: 8px;
+}
+.toast {
+    background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px);
+    border: 1px solid var(--border-subtle); border-radius: var(--radius-md);
+    padding: 14px 18px; min-width: 300px; max-width: 400px;
+    box-shadow: var(--shadow-card); animation: toastIn 0.4s ease;
+    display: flex; align-items: flex-start; gap: 10px;
+}
+.toast.removing { animation: toastOut 0.3s ease forwards; }
+.toast-icon { font-size: 18px; flex-shrink: 0; }
+.toast-body { flex: 1; }
+.toast-title { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+.toast-message { font-size: 12px; color: var(--text-secondary); margin-top: 2px; line-height: 1.4; }
+.toast.info { border-left: 3px solid var(--accent-cyan); }
+.toast.warning { border-left: 3px solid var(--warning); }
+.toast.danger { border-left: 3px solid var(--danger); }
+.toast.success { border-left: 3px solid var(--success); }

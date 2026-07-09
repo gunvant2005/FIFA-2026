@@ -1,0 +1,12 @@
+name: CD Release Deployment
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy to Kubernetes Cluster
+      run: echo "Deploying artifacts..."

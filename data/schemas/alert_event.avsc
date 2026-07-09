@@ -1,0 +1,12 @@
+{
+  "type": "record",
+  "name": "AlertEvent",
+  "namespace": "aura.stadium.events",
+  "fields": [
+    { "name": "eventId", "type": "string" },
+    { "name": "zone", "type": "string" },
+    { "name": "densityPct", "type": "int" },
+    { "name": "status", "type": { "type": "enum", "name": "AlertStatus", "symbols": ["INFO", "WARNING", "CRITICAL", "RESOLVED"] } },
+    { "name": "timestamp", "type": "long" }
+  ]
+}

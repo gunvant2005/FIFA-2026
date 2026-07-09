@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA – AI Unified Real-time Assistant | FIFA World Cup 2026</title>
+    <meta name="description" content="AURA Smart Stadium Platform – GenAI-powered real-time intelligence for FIFA World Cup 2026. Enhancing fan experience, crowd management, accessibility, and stadium operations.">
+    <meta name="keywords" content="FIFA 2026, Smart Stadium, AI, GenAI, AURA, Crowd Management, Fan Experience">
+    <meta name="theme-color" content="#0a0e27">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Particle Background -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 40 40" fill="none">
+                    <circle cx="20" cy="20" r="18" stroke="url(#logoGrad)" stroke-width="2.5"/>
+                    <path d="M20 6 L28 14 L28 26 L20 34 L12 26 L12 14 Z" stroke="url(#logoGrad)" stroke-width="1.5" fill="none"/>
+                    <circle cx="20" cy="20" r="5" fill="url(#logoGrad)"/>
+                    <defs>
+                        <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40">
+                            <stop offset="0%" stop-color="#00d4ff"/>
+                            <stop offset="100%" stop-color="#f5a623"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <div class="logo-text">
+                <span class="logo-title">AURA</span>
+                <span class="logo-subtitle">FIFA 2026</span>
+            </div>
+        </div>
+
+        <div class="nav-links">
+            <a href="#" class="nav-link active" data-view="dashboard" id="nav-dashboard">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                </span>
+                <span class="nav-label">Command Center</span>
+            </a>
+            <a href="#" class="nav-link" data-view="chat" id="nav-chat">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                </span>
+                <span class="nav-label">AI Assistant</span>
+                <span class="nav-badge pulse">LIVE</span>
+            </a>
+            <a href="#" class="nav-link" data-view="navigator" id="nav-navigator">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                </span>
+                <span class="nav-label">Stadium Navigator</span>
+            </a>
+            <a href="#" class="nav-link" data-view="operations" id="nav-operations">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+                </span>
+                <span class="nav-label">Ops Copilot</span>
+            </a>
+            <a href="#" class="nav-link" data-view="transport" id="nav-transport">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                </span>
+                <span class="nav-label">Transport</span>
+            </a>
+            <a href="#" class="nav-link" data-view="sustainability" id="nav-sustainability">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+                </span>
+                <span class="nav-label">Sustainability</span>
+            </a>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="live-indicator">
+                <span class="live-dot"></span>
+                <span>System Online</span>
+            </div>
+            <div class="sidebar-time" id="sidebar-time">--:--:--</div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="main-content">
+        <!-- Top Bar -->
+        <header class="top-bar">
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <div class="top-bar-info">
+                <h1 class="page-title" id="page-title">Command Center</h1>
+                <div class="match-info">
+                    <span class="match-badge">LIVE</span>
+                    <span class="match-text" id="match-text">🇧🇷 Brazil vs Argentina 🇦🇷 — MetLife Stadium, NJ</span>
+                </div>
+            </div>
+            <div class="top-bar-actions">
+                <div class="weather-widget" id="weather-widget">
+                    <span class="weather-icon">☀️</span>
+                    <span class="weather-temp">28°C</span>
+                </div>
+                <button class="icon-btn" id="notifications-btn" aria-label="Notifications">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+                    <span class="notification-count" id="notification-count">5</span>
+                </button>
+                <div class="user-avatar" id="user-avatar">
+                    <span>AD</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- View Container -->
+        <div class="view-container" id="view-container">
+
+            <!-- ==================== DASHBOARD VIEW ==================== -->
+            <section class="view active" id="view-dashboard">
+                <!-- KPI Row -->
+                <div class="kpi-row">
+                    <div class="kpi-card" id="kpi-fans">
+                        <div class="kpi-icon fans-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                        </div>
+                        <div class="kpi-content">
+                            <span class="kpi-value" id="kpi-fans-value">67,842</span>
+                            <span class="kpi-label">Fans in Stadium</span>
+                            <span class="kpi-trend up">↑ 2.3% from gate open</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card" id="kpi-density">
+                        <div class="kpi-icon density-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                        </div>
+                        <div class="kpi-content">
+                            <span class="kpi-value" id="kpi-density-value">78%</span>
+                            <span class="kpi-label">Crowd Density</span>
+                            <span class="kpi-trend warning">⚠ Zone B High</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card" id="kpi-incidents">
+                        <div class="kpi-icon incidents-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        </div>
+                        <div class="kpi-content">
+                            <span class="kpi-value" id="kpi-incidents-value">3</span>
+                            <span class="kpi-label">Active Incidents</span>
+                            <span class="kpi-trend down">↓ 40% vs last match</span>
+                        </div>
+                    </div>
+                    <div class="kpi-card" id="kpi-transport">
+                        <div class="kpi-icon transport-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                        </div>
+                        <div class="kpi-content">
+                            <span class="kpi-value" id="kpi-transport-value">12,450</span>
+                            <span class="kpi-label">Transport Arrivals</span>
+                            <span class="kpi-trend up">↑ On Schedule</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard Grid -->
+                <div class="dashboard-grid">
+                    <!-- Fan Flow Chart -->
+                    <div class="glass-card chart-card">
+                        <div class="card-header">
+                            <h3>Fan Flow Over Time</h3>
+                            <span class="card-badge live">LIVE</span>
+                        </div>
+                        <canvas id="fan-flow-chart" width="600" height="250"></canvas>
+                    </div>
+
+                    <!-- AI Match Summary -->
+                    <div class="glass-card ai-summary-card">
+                        <div class="card-header">
+                            <h3>🤖 AI Match Summary</h3>
+                            <span class="card-badge ai">GenAI</span>
+                        </div>
+                        <div class="ai-summary-content" id="ai-summary-content">
+                            <div class="typing-indicator">
+                                <span></span><span></span><span></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gate Throughput -->
+                    <div class="glass-card">
+                        <div class="card-header">
+                            <h3>Gate Throughput</h3>
+                            <span class="card-badge">Real-time</span>
+                        </div>
+                        <div class="gate-bars" id="gate-bars">
+                            <!-- Generated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Zone Status -->
+                    <div class="glass-card">
+                        <div class="card-header">
+                            <h3>Zone Status</h3>
+                        </div>
+                        <div class="zone-grid" id="zone-grid">
+                            <!-- Generated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Recent Alerts -->
+                    <div class="glass-card alerts-card">
+                        <div class="card-header">
+                            <h3>🔔 Recent Alerts</h3>
+                            <span class="card-badge warning">5 new</span>
+                        </div>
+                        <div class="alerts-list" id="dashboard-alerts">
+                            <!-- Generated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== CHAT VIEW ==================== -->
+            <section class="view" id="view-chat">
+                <div class="chat-container">
+                    <!-- Chat Sidebar -->
+                    <div class="chat-sidebar">
+                        <div class="chat-sidebar-header">
+                            <h3>AURA Assistant</h3>
+                            <div class="language-selector">
+                                <select id="language-select">
+                                    <option value="en">🇺🇸 English</option>
+                                    <option value="es">🇪🇸 Español</option>
+                                    <option value="pt">🇧🇷 Português</option>
+                                    <option value="fr">🇫🇷 Français</option>
+                                    <option value="de">🇩🇪 Deutsch</option>
+                                    <option value="ar">🇸🇦 العربية</option>
+                                    <option value="zh">🇨🇳 中文</option>
+                                    <option value="ja">🇯🇵 日本語</option>
+                                    <option value="ko">🇰🇷 한국어</option>
+                                    <option value="hi">🇮🇳 हिन्दी</option>
+                                    <option value="it">🇮🇹 Italiano</option>
+                                    <option value="nl">🇳🇱 Nederlands</option>
+                                    <option value="ru">🇷🇺 Русский</option>
+                                    <option value="tr">🇹🇷 Türkçe</option>
+                                    <option value="sv">🇸🇪 Svenska</option>
+                                    <option value="pl">🇵🇱 Polski</option>
+                                    <option value="id">🇮🇩 Indonesian</option>
+                                    <option value="th">🇹🇭 ไทย</option>
+                                    <option value="vi">🇻🇳 Tiếng Việt</option>
+                                    <option value="sw">🇰🇪 Swahili</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="quick-actions">
+                            <h4>Quick Actions</h4>
+                            <button class="quick-chip" data-query="Where is my seat Section 204?">🪑 Find My Seat</button>
+                            <button class="quick-chip" data-query="What food is near Section 200?">🍔 Nearby Food</button>
+                            <button class="quick-chip" data-query="Where is the nearest restroom?">🚻 Restrooms</button>
+                            <button class="quick-chip" data-query="Show me exit routes">🚪 Exit Routes</button>
+                            <button class="quick-chip" data-query="What are the wheelchair accessible routes?">♿ Accessibility</button>
+                            <button class="quick-chip" data-query="How do I get to the metro station?">🚇 Metro / Transit</button>
+                            <button class="quick-chip" data-query="What is the score right now?">⚽ Live Score</button>
+                            <button class="quick-chip" data-query="Any halal food options nearby?">🥗 Dietary Options</button>
+                        </div>
+                        <div class="chat-stats">
+                            <div class="stat-item">
+                                <span class="stat-value" id="chat-queries-count">1,247</span>
+                                <span class="stat-label">Queries Today</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">98.5%</span>
+                                <span class="stat-label">Resolution Rate</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value">1.2s</span>
+                                <span class="stat-label">Avg Response</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Main -->
+                    <div class="chat-main">
+                        <div class="chat-messages" id="chat-messages">
+                            <div class="chat-welcome">
+                                <div class="welcome-avatar">
+                                    <svg viewBox="0 0 48 48" fill="none">
+                                        <circle cx="24" cy="24" r="22" stroke="url(#chatGrad)" stroke-width="2"/>
+                                        <circle cx="24" cy="24" r="8" fill="url(#chatGrad)"/>
+                                        <defs><linearGradient id="chatGrad" x1="0" y1="0" x2="48" y2="48"><stop offset="0%" stop-color="#00d4ff"/><stop offset="100%" stop-color="#f5a623"/></linearGradient></defs>
+                                    </svg>
+                                </div>
+                                <h2>Hello! I'm AURA 👋</h2>
+                                <p>Your AI-powered stadium assistant. I can help you navigate the stadium, find food, get match updates, and much more — in 20+ languages!</p>
+                            </div>
+                        </div>
+                        <div class="chat-input-area">
+                            <div class="chat-input-wrapper">
+                                <input type="text" id="chat-input" placeholder="Ask AURA anything..." autocomplete="off">
+                                <button class="voice-btn" id="voice-btn" aria-label="Voice input">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                                </button>
+                                <button class="send-btn" id="send-btn" aria-label="Send message">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== NAVIGATOR VIEW ==================== -->
+            <section class="view" id="view-navigator">
+                <div class="navigator-container">
+                    <div class="navigator-controls">
+                        <h3>Stadium Map</h3>
+                        <div class="map-legend">
+                            <span class="legend-item"><span class="legend-dot low"></span> Low Density</span>
+                            <span class="legend-item"><span class="legend-dot medium"></span> Medium</span>
+                            <span class="legend-item"><span class="legend-dot high"></span> High</span>
+                            <span class="legend-item"><span class="legend-dot critical"></span> Critical</span>
+                        </div>
+                        <div class="map-filters">
+                            <button class="filter-btn active" data-filter="density">🌡️ Crowd Density</button>
+                            <button class="filter-btn" data-filter="food">🍔 Food Courts</button>
+                            <button class="filter-btn" data-filter="restroom">🚻 Restrooms</button>
+                            <button class="filter-btn" data-filter="medical">🏥 First Aid</button>
+                            <button class="filter-btn" data-filter="exit">🚪 Exits</button>
+                            <button class="filter-btn" data-filter="accessibility">♿ Accessible</button>
+                        </div>
+                        <div class="poi-list" id="poi-list">
+                            <!-- Generated by JS -->
+                        </div>
+                    </div>
+                    <div class="map-area">
+                        <svg id="stadium-map" viewBox="0 0 800 600" class="stadium-svg">
+                            <!-- Stadium Outline -->
+                            <ellipse cx="400" cy="300" rx="380" ry="270" fill="none" stroke="rgba(0,212,255,0.3)" stroke-width="2"/>
+                            <ellipse cx="400" cy="300" rx="350" ry="245" fill="none" stroke="rgba(0,212,255,0.15)" stroke-width="1"/>
+
+                            <!-- Field -->
+                            <rect x="250" y="180" width="300" height="240" rx="8" fill="rgba(0,180,80,0.2)" stroke="rgba(0,180,80,0.5)" stroke-width="1.5"/>
+                            <line x1="400" y1="180" x2="400" y2="420" stroke="rgba(0,180,80,0.4)" stroke-width="1"/>
+                            <circle cx="400" cy="300" r="40" fill="none" stroke="rgba(0,180,80,0.4)" stroke-width="1"/>
+                            <circle cx="400" cy="300" r="3" fill="rgba(0,180,80,0.6)"/>
+                            <!-- Penalty areas -->
+                            <rect x="250" y="240" width="60" height="120" fill="none" stroke="rgba(0,180,80,0.3)" stroke-width="1"/>
+                            <rect x="490" y="240" width="60" height="120" fill="none" stroke="rgba(0,180,80,0.3)" stroke-width="1"/>
+
+                            <!-- Sections - Top -->
+                            <path id="zone-A" class="stadium-zone" d="M 200,70 A 380,270 0 0,1 600,70 L 560,120 A 300,200 0 0,0 240,120 Z" data-zone="A" data-density="65"/>
+                            <path id="zone-B" class="stadium-zone" d="M 120,130 L 200,70 L 240,120 L 170,175 Z" data-zone="B" data-density="82"/>
+                            <path id="zone-C" class="stadium-zone" d="M 600,70 L 680,130 L 630,175 L 560,120 Z" data-zone="C" data-density="71"/>
+
+                            <!-- Sections - Middle -->
+                            <path id="zone-D" class="stadium-zone" d="M 50,250 L 120,130 L 170,175 L 110,270 Z" data-zone="D" data-density="45"/>
+                            <path id="zone-E" class="stadium-zone" d="M 680,130 L 750,250 L 690,270 L 630,175 Z" data-zone="E" data-density="88"/>
+
+                            <!-- Sections - Bottom -->
+                            <path id="zone-F" class="stadium-zone" d="M 50,350 L 50,250 L 110,270 L 110,370 Z" data-zone="F" data-density="55"/>
+                            <path id="zone-G" class="stadium-zone" d="M 750,250 L 750,350 L 690,370 L 690,270 Z" data-zone="G" data-density="93"/>
+                            <path id="zone-H" class="stadium-zone" d="M 110,370 L 170,430 L 240,480 L 200,530 L 120,470 L 50,350 Z" data-zone="H" data-density="40"/>
+                            <path id="zone-I" class="stadium-zone" d="M 600,530 L 560,480 L 630,430 L 690,370 L 750,350 L 680,470 Z" data-zone="I" data-density="60"/>
+                            <path id="zone-J" class="stadium-zone" d="M 200,530 L 240,480 L 560,480 L 600,530 A 380,270 0 0,1 200,530 Z" data-zone="J" data-density="72"/>
+
+                            <!-- Zone Labels -->
+                            <text x="400" y="100" class="zone-label">A</text>
+                            <text x="180" y="135" class="zone-label">B</text>
+                            <text x="620" y="135" class="zone-label">C</text>
+                            <text x="100" y="220" class="zone-label">D</text>
+                            <text x="710" y="220" class="zone-label">E</text>
+                            <text x="75" y="320" class="zone-label">F</text>
+                            <text x="725" y="320" class="zone-label">G</text>
+                            <text x="140" y="440" class="zone-label">H</text>
+                            <text x="660" y="440" class="zone-label">I</text>
+                            <text x="400" y="520" class="zone-label">J</text>
+
+                            <!-- POI Icons (will be toggled by filters) -->
+                            <g class="poi-group" data-type="food">
+                                <circle cx="160" cy="280" r="14" class="poi-marker food-marker"/><text x="160" cy="285" class="poi-icon">🍔</text>
+                                <circle cx="640" cy="280" r="14" class="poi-marker food-marker"/><text x="640" cy="285" class="poi-icon">🍕</text>
+                                <circle cx="400" cy="530" r="14" class="poi-marker food-marker"/><text x="400" cy="535" class="poi-icon">🌮</text>
+                                <circle cx="300" cy="100" r="14" class="poi-marker food-marker"/><text x="300" cy="105" class="poi-icon">🥤</text>
+                                <circle cx="500" cy="100" r="14" class="poi-marker food-marker"/><text x="500" cy="105" class="poi-icon">🍿</text>
+                            </g>
+                            <g class="poi-group" data-type="restroom">
+                                <circle cx="130" cy="200" r="14" class="poi-marker restroom-marker"/><text x="130" cy="205" class="poi-icon">🚻</text>
+                                <circle cx="670" cy="200" r="14" class="poi-marker restroom-marker"/><text x="670" cy="205" class="poi-icon">🚻</text>
+                                <circle cx="300" cy="510" r="14" class="poi-marker restroom-marker"/><text x="300" cy="515" class="poi-icon">🚻</text>
+                                <circle cx="500" cy="510" r="14" class="poi-marker restroom-marker"/><text x="500" cy="515" class="poi-icon">🚻</text>
+                            </g>
+                            <g class="poi-group" data-type="medical">
+                                <circle cx="80" cy="300" r="14" class="poi-marker medical-marker"/><text x="80" cy="305" class="poi-icon">🏥</text>
+                                <circle cx="720" cy="300" r="14" class="poi-marker medical-marker"/><text x="720" cy="305" class="poi-icon">🏥</text>
+                            </g>
+                            <g class="poi-group" data-type="exit">
+                                <circle cx="400" cy="55" r="14" class="poi-marker exit-marker"/><text x="400" cy="60" class="poi-icon">🚪</text>
+                                <circle cx="55" cy="300" r="14" class="poi-marker exit-marker"/><text x="55" cy="305" class="poi-icon">🚪</text>
+                                <circle cx="745" cy="300" r="14" class="poi-marker exit-marker"/><text x="745" cy="305" class="poi-icon">🚪</text>
+                                <circle cx="400" cy="555" r="14" class="poi-marker exit-marker"/><text x="400" cy="560" class="poi-icon">🚪</text>
+                            </g>
+                            <g class="poi-group" data-type="accessibility">
+                                <circle cx="200" cy="530" r="14" class="poi-marker access-marker"/><text x="200" cy="535" class="poi-icon">♿</text>
+                                <circle cx="600" cy="530" r="14" class="poi-marker access-marker"/><text x="600" cy="535" class="poi-icon">♿</text>
+                                <circle cx="100" cy="150" r="14" class="poi-marker access-marker"/><text x="100" cy="155" class="poi-icon">♿</text>
+                            </g>
+                        </svg>
+                        <div class="zone-tooltip" id="zone-tooltip"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== OPERATIONS VIEW ==================== -->
+            <section class="view" id="view-operations">
+                <div class="ops-grid">
+                    <!-- Incident Feed -->
+                    <div class="glass-card ops-incidents">
+                        <div class="card-header">
+                            <h3>🚨 Incident Feed</h3>
+                            <span class="card-badge warning" id="incident-count-badge">3 Active</span>
+                        </div>
+                        <div class="incidents-list" id="incidents-list">
+                            <!-- Generated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- AI Predictive Alerts -->
+                    <div class="glass-card ops-predictions">
+                        <div class="card-header">
+                            <h3>🧠 AI Predictive Alerts</h3>
+                            <span class="card-badge ai">GenAI</span>
+                        </div>
+                        <div class="predictions-list" id="predictions-list">
+                            <!-- Generated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Decision Support -->
+                    <div class="glass-card ops-decisions">
+                        <div class="card-header">
+                            <h3>📋 AI Decision Support</h3>
+                        </div>
+                        <div class="decision-cards" id="decision-cards">
+                            <!-- Generated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Resource Status -->
+                    <div class="glass-card ops-resources">
+                        <div class="card-header">
+                            <h3>📦 Resource Status</h3>
+                        </div>
+                        <div class="resource-grid" id="resource-grid">
+                            <!-- Generated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Staff Deployment -->
+                    <div class="glass-card ops-staff">
+                        <div class="card-header">
+                            <h3>👷 Staff Deployment</h3>
+                        </div>
+                        <div class="staff-table-wrapper">
+                            <table class="staff-table" id="staff-table">
+                                <thead>
+                                    <tr>
+                                        <th>Team</th>
+                                        <th>Zone</th>
+                                        <th>Count</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="staff-table-body">
+                                    <!-- Generated by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Broadcast Panel -->
+                    <div class="glass-card ops-broadcast">
+                        <div class="card-header">
+                            <h3>📢 Broadcast</h3>
+                        </div>
+                        <div class="broadcast-area">
+                            <textarea id="broadcast-message" placeholder="Type announcement message..."></textarea>
+                            <div class="broadcast-controls">
+                                <select id="broadcast-target">
+                                    <option value="all">All Zones</option>
+                                    <option value="a">Zone A</option>
+                                    <option value="b">Zone B</option>
+                                    <option value="c">Zone C</option>
+                                    <option value="security">Security Team</option>
+                                    <option value="medical">Medical Team</option>
+                                </select>
+                                <button class="btn-primary" id="broadcast-send">Send Broadcast</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== TRANSPORT VIEW ==================== -->
+            <section class="view" id="view-transport">
+                <div class="transport-grid">
+                    <!-- Traffic Status -->
+                    <div class="glass-card transport-traffic">
+                        <div class="card-header">
+                            <h3>🚗 Traffic Status</h3>
+                            <span class="card-badge live">LIVE</span>
+                        </div>
+                        <div class="traffic-routes" id="traffic-routes">
+                            <!-- Generated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Parking -->
+                    <div class="glass-card transport-parking">
+                        <div class="card-header">
+                            <h3>🅿️ Parking Lots</h3>
+                        </div>
+                        <div class="parking-lots" id="parking-lots">
+                            <!-- Generated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Public Transport -->
+                    <div class="glass-card transport-public">
+                        <div class="card-header">
+                            <h3>🚇 Public Transport</h3>
+                        </div>
+                        <div class="transit-schedule" id="transit-schedule">
+                            <!-- Generated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Departure Prediction -->
+                    <div class="glass-card transport-prediction">
+                        <div class="card-header">
+                            <h3>🤖 AI Departure Prediction</h3>
+                            <span class="card-badge ai">GenAI</span>
+                        </div>
+                        <canvas id="departure-chart" width="600" height="250"></canvas>
+                        <div class="departure-summary" id="departure-summary"></div>
+                    </div>
+
+                    <!-- Carbon Footprint -->
+                    <div class="glass-card transport-carbon">
+                        <div class="card-header">
+                            <h3>🌿 Transport Carbon Impact</h3>
+                        </div>
+                        <div class="carbon-modes" id="carbon-modes">
+                            <!-- Generated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Rideshare -->
+                    <div class="glass-card transport-rideshare">
+                        <div class="card-header">
+                            <h3>🚕 Rideshare Staging</h3>
+                        </div>
+                        <div class="rideshare-status" id="rideshare-status">
+                            <!-- Generated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==================== SUSTAINABILITY VIEW ==================== -->
+            <section class="view" id="view-sustainability">
+                <div class="sustain-grid">
+                    <!-- Sustainability Score -->
+                    <div class="glass-card sustain-score">
+                        <div class="card-header">
+                            <h3>🏆 Sustainability Score</h3>
+                        </div>
+                        <div class="score-circle-container">
+                            <canvas id="sustain-score-canvas" width="200" height="200"></canvas>
+                            <div class="score-label">
+                                <span class="score-value" id="sustain-score-value">87</span>
+                                <span class="score-text">/ 100</span>
+                            </div>
+                        </div>
+                        <p class="score-description">Excellent environmental performance</p>
+                    </div>
+
+                    <!-- Energy -->
+                    <div class="glass-card sustain-energy">
+                        <div class="card-header">
+                            <h3>⚡ Energy Consumption</h3>
+                            <span class="card-badge live">LIVE</span>
+                        </div>
+                        <canvas id="energy-chart" width="500" height="220"></canvas>
+                        <div class="energy-stats" id="energy-stats">
+                            <!-- Generated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Waste -->
+                    <div class="glass-card sustain-waste">
+                        <div class="card-header">
+                            <h3>♻️ Waste Management</h3>
+                        </div>
+                        <div class="waste-categories" id="waste-categories">
+                            <!-- Generated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Water -->
+                    <div class="glass-card sustain-water">
+                        <div class="card-header">
+                            <h3>💧 Water Usage</h3>
+                        </div>
+                        <div class="water-stats" id="water-stats">
+                            <!-- Generated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Carbon -->
+                    <div class="glass-card sustain-carbon">
+                        <div class="card-header">
+                            <h3>🌍 Carbon Footprint</h3>
+                        </div>
+                        <canvas id="carbon-chart" width="500" height="220"></canvas>
+                    </div>
+
+                    <!-- AI Recommendations -->
+                    <div class="glass-card sustain-ai">
+                        <div class="card-header">
+                            <h3>🤖 AI Recommendations</h3>
+                            <span class="card-badge ai">GenAI</span>
+                        </div>
+                        <div class="ai-recommendations" id="ai-recommendations">
+                            <!-- Generated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Notification Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

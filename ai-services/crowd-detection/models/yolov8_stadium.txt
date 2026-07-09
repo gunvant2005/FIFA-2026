@@ -1,0 +1,8 @@
+Model Name: YOLOv8 Stadium Crowd Density Detector
+Version: 1.0.0
+Framework: ONNX Runtime / PyTorch
+Input: RTSP Camera Video Stream (1920x1080)
+Classes detected: person (class 0)
+Confidence Threshold: 0.45
+
+Note: Due to size constraints, the actual model .onnx file is stored on cloud artifact registry. Use this directory to copy weights during container build.

@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'aura-services'
+    static_configs:
+      - targets: ['api-gateway:8000', 'auth-service:8001']

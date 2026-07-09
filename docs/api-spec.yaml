@@ -1,0 +1,11 @@
+openapi: 3.0.0
+info:
+  title: AURA – API Specifications
+  version: 1.0.0
+paths:
+  /health:
+    get:
+      summary: Health check endpoint
+      responses:
+        '200':
+          description: Server is online
